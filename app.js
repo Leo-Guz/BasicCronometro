@@ -37,11 +37,14 @@ function actualizarCronometro() {
 }
 
 document.getElementById("fijar").addEventListener("click", function () {
-    var nuevoTiempo = document.getElementById("tiempo").value;
+    let nuevoTiempo = document.getElementById("tiempo").value;
     minutos = parseInt(nuevoTiempo);
     segundos = 0;
     document.getElementById("minutos").textContent = minutos.toString().padStart(2, '0');
     document.getElementById("segundos").textContent = segundos.toString().padStart(2, '0');
+    document.getElementById("minutos").style.color = 'green';
+    document.getElementById("segundos").style.color = 'green';
+    document.getElementById("puntos").style.color = 'green';
 });
 
 document.getElementById("iniciar").addEventListener("click", function () {
