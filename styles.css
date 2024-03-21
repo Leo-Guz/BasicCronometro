@@ -59,3 +59,10 @@ main {
         height: auto;
     }
 }
+
+@media screen and (max-width: 800px) {
+    .screen {
+        font-size: 100px;
+        height: 100vh;
+    }
+}
