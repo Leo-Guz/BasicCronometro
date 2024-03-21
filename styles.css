@@ -25,7 +25,6 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70%;
     height: 80%;
     font-size: 400px;
 }
