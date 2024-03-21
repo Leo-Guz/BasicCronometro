@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Cronómetro</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="shortcut icon" href="crono.ico" type="image/x-icon">
+    </head>
+    <body>
+        <main>
+            <div class="screen">
+                <span id="minutos">00</span>:<span id="segundos">00</span>
+            </div>
+            <div class="controles">
+                <input type="number" id="tiempo" class="tiempo">
+                <i class="fa-solid fa-thumbtack" id="fijar"></i>
+                <i class="fa-solid fa-play" id="iniciar"></i>
+                <i class="fa-solid fa-pause" id="detener"></i>
+                <i class="fa-solid fa-rotate-left" id="reiniciar"></i>
+            </div>
+        </main>
+        <script src="app.js"></script>
+    </body>
+</html>
