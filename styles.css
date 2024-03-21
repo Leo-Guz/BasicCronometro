@@ -51,11 +51,12 @@ main {
     font-size: 30px;
 }
 
-/* @media screen and (max-width: 600px) {
-    main {
-        background-color: black;
-    }
+@media screen and (max-width: 800px) {
     .screen {
-        color: red;
+        font-size: 200px;
+        height: 100vh;
     }
-} */
+    main {
+        height: auto;
+    }
+}
