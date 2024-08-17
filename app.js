@@ -21,15 +21,23 @@ playBtn.addEventListener("click", function () {
     countdownScreen.style.color = "green";
     isCountingUp = false;
     countingUp = 0;
-    clearInterval(countdown);
-    let minutes = minInput.value;
-    let seconds = secInput.value;
 
-        if (minutes < 0 || seconds < 0) {
-        alert("No es posible asignar tiempo negativo")
+    if (isPaused) {
+        isPaused = false;
+        return; // Si estaba pausado, simplemente reanuda
     }
 
-    let remaining = parseInt(minutes) * 60 + parseInt(seconds);
+    clearInterval(countdown);
+
+    let minutes = parseInt(minInput.value);
+    let seconds = parseInt(secInput.value);
+
+    if (minutes < 0 || seconds < 0) {
+        alert("No es posible asignar tiempo negativo");
+        return; // Detiene la ejecución si hay tiempo negativo
+    }
+
+    remaining = minutes * 60 + seconds;
 
     countdown = setInterval(() => {
         if (!isPaused) {
