@@ -4,7 +4,7 @@ let cronometro;
 let isRunning = false;
 
 function actualizarCronometro() {
-    if (segundos > 0 || minutos > 0 || segundos < 0 || minutos < 0) {
+    if (segundos > 0 || minutos > 0) {
         segundos--;
 
         if (segundos === -1) {
