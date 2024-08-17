@@ -1,7 +1,6 @@
 * {
     padding: 0;
     margin: 0;
-    color: green;
     font-family:Arial, Helvetica, sans-serif;
 }
 
@@ -21,12 +20,17 @@ main {
     background-color: white;
 }
 
+.btn {
+    cursor: pointer;
+}
+
 .screen  {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80%;
     font-size: 400px;
+    color: green;
 }
 
 .controles {
@@ -35,10 +39,15 @@ main {
     flex-wrap: wrap;
     align-content: space-evenly;
     justify-content: space-evenly;
+    align-items: center;
 }
 
-.controles > input {
+.inputs {
+    padding: 3px;
     width: 50px;
+    font-size: 25px;
+    color: rgb(230, 230, 230);
+    border-color: white;
 }
 
 .controles > i {

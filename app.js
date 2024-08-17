@@ -1,74 +1,72 @@
-let minutos = 0;
-let segundos = 0;
-let cronometro;
-let isRunning = false;
+let setBtn = document.getElementById("fijar");
+let playBtn = document.getElementById("play");
+let pauseBtn = document.getElementById("pause");
+let resetBtn = document.getElementById("reset");
+let minInput = document.getElementById("minutes");
+let secInput = document.getElementById("seconds");
+const countdownScreen = document.getElementById('countdown');
+let countdown;
+let remaining;
+let countingUp = 0;
+let isPaused = false;
+let isCountingUp = false;
 
-function actualizarCronometro() {
-    if (segundos > 0 || minutos > 0) {
-        segundos--;
-
-        if (segundos === -1) {
-            segundos = 59;
-            minutos--;
-        }
-
-        if (minutos === 0 && segundos <= 30) {
-            document.getElementById("minutos").style.color = 'orange';
-            document.getElementById("segundos").style.color = 'orange';
-            document.getElementById("puntos").style.color = 'orange';
-            
-        }
-
-        if (minutos === 0 && segundos === 0) {
-            document.getElementById("minutos").style.color = 'red';
-            document.getElementById("segundos").style.color = 'red';
-            document.getElementById("puntos").style.color = 'red';
-            
-        }
-
-        document.getElementById("minutos").textContent = minutos.toString().padStart(2, '0');
-        document.getElementById("segundos").textContent = segundos.toString().padStart(2, '0');
-    }
-
-    else {
-        clearInterval(cronometro);
-        isRunning = false;
-    }
+// Colocar tiempo en pantalla
+function updateDisplay(minutes, seconds) {
+    let dash = isCountingUp ? "-" : "";
+    countdownScreen.textContent = `${dash}${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
-document.getElementById("fijar").addEventListener("click", function () {
-    let nuevoTiempo = document.getElementById("tiempo").value;
-    minutos = parseInt(nuevoTiempo);
-    segundos = 0;
-    document.getElementById("minutos").textContent = minutos.toString().padStart(2, '0');
-    document.getElementById("segundos").textContent = segundos.toString().padStart(2, '0');
-    document.getElementById("minutos").style.color = 'green';
-    document.getElementById("segundos").style.color = 'green';
-    document.getElementById("puntos").style.color = 'green';
-});
+playBtn.addEventListener("click", function () {
+    countdownScreen.style.color = "green";
+    isCountingUp = false;
+    countingUp = 0;
+    clearInterval(countdown);
+    let minutes = minInput.value;
+    let seconds = secInput.value;
 
-document.getElementById("iniciar").addEventListener("click", function () {
-    if (!isRunning && (minutos > 0 || segundos > 0)) {
-        cronometro = setInterval(actualizarCronometro, 1000);
-        isRunning = true;
+        if (minutes < 0 || seconds < 0) {
+        alert("No es posible asignar tiempo negativo")
     }
+
+    let remaining = parseInt(minutes) * 60 + parseInt(seconds);
+
+    countdown = setInterval(() => {
+        if (!isPaused) {
+            if (remaining > 0) {
+                if (remaining <= 31) {
+                    countdownScreen.style.color = "orange";
+                }
+                remaining--;
+            } else {
+                countdownScreen.style.color = "red";
+                isCountingUp = true;
+                countingUp++;
+            }
+            const minutes = Math.floor(Math.abs(remaining > 0 ? remaining : countingUp ) / 60);
+            const seconds = Math.abs(remaining > 0 ? remaining : countingUp ) % 60;
+            updateDisplay(minutes, seconds);
+        }
+    }, 1000);
 });
 
-
-document.getElementById("detener").addEventListener("click", function () {
-    if (isRunning) {
-        clearInterval(cronometro);
-        isRunning = false;
-    }
+// Iniciar conteo
+setBtn.addEventListener("click", function () {
+    countdownScreen.style.color = "green";
+    updateDisplay(minInput.value, secInput.value);
 });
 
-document.getElementById("reiniciar").addEventListener("click", function () {
-    clearInterval(cronometro);
-    minutos = segundos = 0;
-    isRunning = false;
-    document.getElementById("minutos").textContent = "00";
-    document.getElementById("segundos").textContent = "00";
-    document.getElementById("minutos").style.color = 'green';
-    document.getElementById("segundos").style.color = 'green';
-    document.getElementById("puntos").style.color = 'green';
+// Pausar conteo
+pauseBtn.addEventListener("click", function () {
+    isPaused = !isPaused;
+});
+
+resetBtn.addEventListener("click", function () {
+    isCountingUp = false;
+    countingUp = 0;
+    clearInterval(countdown);
+    isPaused = false;
+    remaining = parseInt(minInput.value) * 60 + parseInt(secInput.value);
+    countdownScreen.style.color = "green";
+    updateDisplay(minInput.value, secInput.value);
 });

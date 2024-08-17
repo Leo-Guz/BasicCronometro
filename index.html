@@ -11,14 +11,19 @@
     <body>
         <main>
             <div class="screen">
-                <span id="minutos">00</span><span id="puntos">:</span><span id="segundos">00</span>
+                <span id="countdown">00:00</span>
             </div>
+            <div></div>
             <div class="controles">
-                <input type="number" id="tiempo" class="tiempo">
-                <i class="fa-solid fa-thumbtack" id="fijar"></i>
-                <i class="fa-solid fa-play" id="iniciar"></i>
-                <i class="fa-solid fa-pause" id="detener"></i>
-                <i class="fa-solid fa-rotate-left" id="reiniciar"></i>
+                <div class="d-flex" style="color: white;">
+                    <input type="number" id="minutes" min="0" max="59" class="inputs" value="00">
+                    :
+                    <input type="number" id="seconds" min="0" max="59" class="inputs" value="00" style="display: none;">
+                </div>
+                <i class="fa-solid fa-thumbtack btn" id="fijar"></i>
+                <i class="fa-solid fa-play btn" id="play"></i>
+                <i class="fa-solid fa-pause btn" btn id="pause"></i>
+                <i class="fa-solid fa-rotate-left btn" id="reset"></i>
             </div>
         </main>
         <script src="app.js"></script>
